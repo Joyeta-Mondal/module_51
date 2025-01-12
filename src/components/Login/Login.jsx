@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import { auth } from "../../firebase.init";
 
 const Login = () => {
+  const { signInUser } = useContext(AuthContext);
+
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -8,6 +13,14 @@ const Login = () => {
     const password = e.target.password.value;
 
     console.log(email, password);
+
+    signInUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log("ERROR!", error.message);
+      });
   };
   return (
     <div className="card text-center bg-base-100 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
