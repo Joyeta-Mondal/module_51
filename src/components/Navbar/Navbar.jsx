@@ -19,6 +19,15 @@ const Navbar = () => {
     </>
   );
 
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        console.log("User Signed out successfully");
+      })
+      .catch((error) => {
+        console.log("Error!", error.message);
+      });
+  };
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -56,7 +65,10 @@ const Navbar = () => {
           {user ? (
             <>
               <span>{user.email}</span>
-              <a className="btn"> Sign Out </a>
+              <a onClick={handleSignOut} className="btn">
+                {" "}
+                Sign Out{" "}
+              </a>
             </>
           ) : (
             <Link to="/register">Register</Link>
