@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
-import { auth } from "../../firebase.init";
 
 const Login = () => {
   const { signInUser } = useContext(AuthContext);
@@ -11,8 +10,6 @@ const Login = () => {
 
     const email = e.target.email.value;
     const password = e.target.password.value;
-
-    console.log(email, password);
 
     signInUser(email, password)
       .then((result) => {
